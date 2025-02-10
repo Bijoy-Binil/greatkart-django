@@ -55,7 +55,7 @@ class Account(AbstractBaseUser):
     # Boolean fields for user roles
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)  # Set to True by default
+    is_active = models.BooleanField(default=False)  # Set to True by default
     is_superadmin = models.BooleanField(default=False)
 
     # Specify which field will be used to authenticate users (email in this case)
