@@ -7,7 +7,7 @@ from carts.models import Cart,CartItem
 from .forms import RegistrationForm
 from .models import Account
 from carts.views import _cart_id
-
+import requests
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
@@ -106,8 +106,16 @@ def login(request):
                 pass
             auth_login(request,user)
             messages.success(request,'You are logged in!!')
-            
-            return redirect('dashboard')
+            url=request.META.get('HTTP_REFERER')
+            try:
+                query=requests.utils.urlparse(url).query
+                params= dict(x.split('=') for x in query.split('&'))
+                if 'next' in params:
+                    nextPage=params['next']
+                    return redirect(nextPage)
+               
+            except:
+                return redirect('dashboard')
         else:
             messages.error(request,'Invalid Credentials')
             return redirect('login')
