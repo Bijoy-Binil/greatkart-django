@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'carts',
+    'orders',
+    
 ]
 
 MIDDLEWARE = [
@@ -152,3 +154,7 @@ EMAIL_PORT=587
 EMAIL_HOST_USER='psyycode@gmail.com'
 EMAIL_HOST_PASSWORD='yixp eetx lpyx ztoh'
 EMAIL_USE_TLS=True
+
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
+
